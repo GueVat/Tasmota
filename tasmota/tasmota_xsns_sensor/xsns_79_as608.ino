@@ -133,10 +133,10 @@ void As608Loop(void) {
   if (!As608.enroll_step) {
     // Search for Finger
 
-//    As608Finger->LEDcontrol(FINGERPRINT_LED_OFF, 0, FINGERPRINT_LED_RED);
-//    As608Finger->LEDcontrol(FINGERPRINT_LED_OFF, 0, FINGERPRINT_LED_BLUE);
-//    As608Finger->LEDcontrol(FINGERPRINT_LED_OFF, 0, FINGERPRINT_LED_PURPLE);
-//    As608Finger->LEDcontrol(0);
+    As608Finger->LEDcontrol(FINGERPRINT_LED_ON, 0, FINGERPRINT_LED_BLUE);
+																			
+																			  
+    // As608Finger->LEDcontrol(0);
 
     p = As608Finger->getImage();          // Take image
     if (p != FINGERPRINT_OK) { return; }
@@ -146,26 +146,57 @@ void As608Loop(void) {
 
 //    p = As608Finger->fingerFastSearch();  // Match found - fails on R503
     p = As608Finger->fingerSearch();      // Match found
-    if (p != FINGERPRINT_OK) {
-//      AddLog(LOG_LEVEL_DEBUG, PSTR("AS6: No matching finger"));
-      return;
+    if (p == FINGERPRINT_OK) {
+        // Found a match
+        char Userid[20];
+
+        switch(As608Finger->fingerID) {
+          case 1 ... 10:
+            strcpy(Userid, "Guenter");
+            break;
+          case 11 ... 20:
+            strcpy(Userid, "Eva");
+            break;
+          case 21 ... 30:
+            strcpy(Userid, "Heiko");
+            break;
+          case 31 ... 40:
+            strcpy(Userid, "Hans");
+            break;
+          case 41 ... 50:
+            strcpy(Userid, "Ingrid");
+            break;
+          default:
+            strcpy(Userid, "NoName");
+        }
+        Response_P(PSTR("{\"" D_JSON_FPRINT "\":{\"" D_JSON_ID "\":%d,\"" D_JSON_CONFIDENCE "\":%d,\"User\":\"%s\"}}"), As608Finger->fingerID, As608Finger->confidence, Userid);
+        As608Finger->LEDcontrol(FINGERPRINT_LED_FLASHING, 0x20, FINGERPRINT_LED_BLUE, 0x4);
+    } else {
+        // Found NO match
+        Response_P(PSTR("{\"" D_JSON_FPRINT "\":{\"" D_JSON_ID "\":%d,\"" D_JSON_CONFIDENCE "\":%d,\"User\":\"Unknown\"}}"), -1, 0);
+        As608Finger->LEDcontrol(FINGERPRINT_LED_FLASHING, 0x20, FINGERPRINT_LED_RED, 0x3);
+        //AddLog(LOG_LEVEL_DEBUG, PSTR("AS6: No matching finger"));
+			 
     }
 
-    // Found a match
-    Response_P(PSTR("{\"" D_JSON_FPRINT "\":{\"" D_JSON_ID "\":%d,\"" D_JSON_CONFIDENCE "\":%d}}"), As608Finger->fingerID, As608Finger->confidence);
+					
+																																					
     MqttPublishPrefixTopicRulesProcess_P(RESULT_OR_STAT, PSTR(D_JSON_FPRINT));
+    delay(1300);
     return;
   } else {
     // enroll is active
     switch (As608.enroll_step) {
       case 1:
         As608PublishMessage(PSTR(D_FP_ENROLL_PLACEFINGER));
-//        As608Finger->LEDcontrol(FINGERPRINT_LED_ON, 0, FINGERPRINT_LED_BLUE);
+        As608Finger->LEDcontrol(FINGERPRINT_LED_ON , 0, FINGERPRINT_LED_PURPLE);
         As608.enroll_step++;
         break;
       case 2:
         // get first image
         if (As608GetFingerImage() == FINGERPRINT_OK) {
+          As608Finger->LEDcontrol(FINGERPRINT_LED_FLASHING, 0x20, FINGERPRINT_LED_BLUE, 0x3);
+          delay(1300);
           As608.enroll_step++;
         }
         break;
@@ -190,12 +221,14 @@ void As608Loop(void) {
         break;
       case 6:
         As608PublishMessage(PSTR(D_FP_ENROLL_PLACESAMEFINGER));
-//        As608Finger->LEDcontrol(FINGERPRINT_LED_OFF, 0, FINGERPRINT_LED_PURPLE);
+        As608Finger->LEDcontrol(FINGERPRINT_LED_ON, 0, FINGERPRINT_LED_PURPLE);
         As608.enroll_step++;
         break;
       case 7:
         // get second image of finger
         if (As608GetFingerImage() == FINGERPRINT_OK) {
+          As608Finger->LEDcontrol(FINGERPRINT_LED_FLASHING, 0x20, FINGERPRINT_LED_BLUE, 0x3);
+          delay(1300);
           As608.enroll_step++;
         }
         break;
@@ -203,6 +236,8 @@ void As608Loop(void) {
         // convert second image
         if (As608ConvertFingerImage(2) != FINGERPRINT_OK) {
           As608PublishMessage(PSTR(D_FP_ENROLL_RETRY));
+          As608Finger->LEDcontrol(FINGERPRINT_LED_FLASHING, 0x20, FINGERPRINT_LED_RED, 0x3);
+          delay(1300);
           As608.enroll_step -= 2;
           break;
         }
@@ -219,6 +254,7 @@ void As608Loop(void) {
         char response[TOPSZ];
         As608PublishMessage(As608Message(response, p));
         if (p == FINGERPRINT_OK) {
+          As608Finger->LEDcontrol(FINGERPRINT_LED_GRADUAL_OFF, 0x90, FINGERPRINT_LED_BLUE);
           As608.enroll_step = 0;
           As608.model_number = 0;
         } else {
@@ -227,6 +263,8 @@ void As608Loop(void) {
         break;
       case 99:
         As608PublishMessage(PSTR(D_FP_ENROLL_RESTART));
+        As608Finger->LEDcontrol(FINGERPRINT_LED_FLASHING, 0x20, FINGERPRINT_LED_RED, 0x3);
+        delay(1300);
         As608.enroll_step = 1;
         break;
       default:
@@ -253,8 +291,8 @@ void CmndFpEnroll(void) {
       ResponseCmndChar_P(PSTR(D_FP_ENROLL_ACTIVE));
     }
   } else {
-    if ((XdrvMailbox.payload > 0) && (XdrvMailbox.payload <= 128)) {
-      // FpEnroll 1..128 - Start enrollement into slot x
+    if ((XdrvMailbox.payload > 0) && (XdrvMailbox.payload <= 200)) {
+      // FpEnroll 1..200 - Start enrollement into slot x
       As608.enroll_step = 1;
       As608.model_number = XdrvMailbox.payload;
       ResponseClear();  // Will use loop start message
@@ -276,11 +314,13 @@ void CmndFpDelete(void) {
       ResponseCmndDone();
     }
   }
-  else if ((XdrvMailbox.payload > 0) && (XdrvMailbox.payload <= 128)) {
-    // FpDelete 1..128 - Delete single entry from database
+  else if ((XdrvMailbox.payload > 0) && (XdrvMailbox.payload <= 200)) {
+    // FpDelete 1..200 - Delete single entry from database
     int p = As608Finger->deleteModel(XdrvMailbox.payload);
     char response[TOPSZ];
     ResponseCmndChar(As608Message(response, p));
+    As608Finger->LEDcontrol(FINGERPRINT_LED_FLASHING, 0x20, FINGERPRINT_LED_RED, 0x3);
+    delay(1300);
   }
 }
 

@@ -172,7 +172,7 @@ public:
 
   uint16_t status_reg = 0x0; ///< The status register (set by getParameters)
   uint16_t system_id = 0x0;  ///< The system identifier (set by getParameters)
-  uint16_t capacity = 64; ///< The fingerprint capacity (set by getParameters)
+  uint16_t capacity = 200; ///< The fingerprint capacity (set by getParameters) GV: was 64
   uint16_t security_level = 0; ///< The security level (set by getParameters)
   uint32_t device_addr =
       0xFFFFFFFF;             ///< The device address (set by getParameters)
