@@ -51,12 +51,14 @@
 #define D_DECIMAL_SEPARATOR ","
 
 // Common
+#define D_ABSOLUTE_HUMIDITY "Abs Humidity"
 #define D_ADMIN "Admin"
 #define D_AIR_QUALITY "Качество на въздуха"
 #define D_AP "Точка за достъп"       // Access Point
 #define D_AS "като"
 #define D_AUTO "АВТОМАТИЧНО"
 #define D_BATT "Бат."                // Short for Battery
+#define D_BATTERY_CHARGE "Charge"   // Battery charge in %
 #define D_BLINK "Мигане вкл."
 #define D_BLINKOFF "Мигане изкл."
 #define D_BOOT_COUNT "Брой стартирания"
@@ -103,6 +105,7 @@
 #define D_FALLBACK_TOPIC "Резервна тема"
 #define D_FALSE "Невярно"
 #define D_FILE "Файл"
+#define D_FILE_SYSTEM_SIZE "File System Size"
 #define D_FLOW_RATE "Дебит"
 #define D_FRAGMENTATION "фраг."      // Lower case abbreviated version of fragmentation used in "memory fragmentation"
 #define D_FRAME_RATE "Кадъра в секунда"
@@ -133,6 +136,7 @@
 #define D_MULTI_PRESS "неколкократно натискане"
 #define D_NOISE "Шум"
 #define D_NONE "Няма"
+#define D_NOX "NOx"
 #define D_O2 "Кислород"
 #define D_OFF "Изкл."
 #define D_OFFLINE "Извън мрежа"
@@ -148,6 +152,7 @@
 #define D_POWER_FACTOR "Фактор на мощността"
 #define D_POWERUSAGE "Мощност"
 #define D_POWERUSAGE_ACTIVE "Активна мощност"
+#define D_POWERUSAGE_ACTIVE_TOTAL "Active Power Total"
 #define D_POWERUSAGE_APPARENT "Пълна мощност"
 #define D_POWERUSAGE_REACTIVE "Реактивна мощност"
 #define D_PRESSURE "Налягане"
@@ -184,6 +189,9 @@
 #define D_TRANSMIT "Предаване"
 #define D_TRUE "Вярно"
 #define D_TVOC "TVOC"
+#define D_TWILIGHT_ASTRONOMICAL "Astronomical"
+#define D_TWILIGHT_CIVIL "Civil"
+#define D_TWILIGHT_NAUTICAL "Nautical"
 #define D_UPGRADE "Обновяване"
 #define D_UPLOAD "Качването е"
 #define D_UPTIME "Време на работа"
@@ -201,6 +209,7 @@
 #define D_UV_LEVEL "Ниво на UV"
 #define D_UV_POWER "Сила на UV"
 #define D_VERSION "Издание"
+#define D_VOC "VOC"
 #define D_VOLTAGE "Напрежение"
 #define D_VOLUME "Обем"
 #define D_WEIGHT "Тегло"
@@ -298,6 +307,7 @@
 #define D_REFRESH_TO_SCAN_AGAIN "Обновяване за повторно сканиране"
 #define D_DUPLICATE_ACCESSPOINT "Дублирана точка за достъп"
 #define D_SKIPPING_LOW_QUALITY "Пропускане поради лошо качество"
+#define D_MODE "Mode"
 #define D_RSSI "RSSI"
 #define D_WEP "WEP"
 #define D_WPA_PSK "WPA PSK"
@@ -647,6 +657,8 @@
 #define D_SENSOR_I2S_BCLK_IN   "I2S WS IN"
 #define D_SENSOR_I2S_DIN       "I2S DIN"
 #define D_SENSOR_I2S_DOUT      "I2S DOUT"
+#define D_SENSOR_I2S_DAC       "I2S DAC"
+#define D_SENSOR_HDMI_CEC      "HDMI CEC"
 #define D_SENSOR_WS2812        "WS2812"
 #define D_SENSOR_DFR562        "MP3 Player"
 #define D_SENSOR_DFR562_BUSY   "MP3 Busy"
@@ -663,6 +675,7 @@
 #define D_SENSOR_IRRECV        "IRrecv"
 #define D_SENSOR_MHZ_RX        "MHZ Rx"
 #define D_SENSOR_MHZ_TX        "MHZ Tx"
+#define D_SENSOR_HC8_RX        "HC8 Rx"
 #define D_SENSOR_PZEM004_RX    "PZEM004 Rx"
 #define D_SENSOR_PZEM016_RX    "PZEM016 Rx"
 #define D_SENSOR_PZEM017_RX    "PZEM017 Rx"
@@ -799,6 +812,8 @@
 #define D_SENSOR_OUTPUT_LO     "Output Lo"
 #define D_SENSOR_AS608_TX      "AS608 Tx"
 #define D_SENSOR_AS608_RX      "AS608 Rx"
+#define D_SENSOR_GM861_TX      "GM861 Tx"
+#define D_SENSOR_GM861_RX      "GM861 Rx"
 #define D_SENSOR_DDS2382_TX    "DDS238-2 Tx"
 #define D_SENSOR_DDS2382_RX    "DDS238-2 Rx"
 #define D_SENSOR_DDSU666_TX    "DDSU666 Tx"
@@ -895,6 +910,9 @@
 #define D_SENSOR_ZEROCROSS     "ZC Pulse"
 #define D_SENSOR_HALLEFFECT    "HallEffect"
 #define D_SENSOR_EPD_DATA      "EPD Data"
+#define D_SENSOR_PCF8574_INT   "PCF8574 Int"
+#define D_SENSOR_MCP23XXX_INT  "MCP23xxx Int"
+#define D_SENSOR_MCP23SXX_CS   "MCP23Sxx CS"
 #define D_SENSOR_MCP2515_CS    "MCP2515 CS"
 #define D_SENSOR_HRG15_RX      "HRG15 Rx"
 #define D_SENSOR_HRG15_TX      "HRG15 Tx"
@@ -911,6 +929,7 @@
 #define D_GPIO_DINGTIAN_SDI    "Dingtian SDI"
 #define D_GPIO_DINGTIAN_Q7     "Dingtian Q7"
 #define D_GPIO_DINGTIAN_PL     "Dingtian PL"
+#define D_GPIO_DINGTIAN_OE     "Dingtian OE"
 #define D_GPIO_DINGTIAN_RCK    "Dingtian RCK"
 #define D_SENSOR_CM11_TX       "CM110x TX"
 #define D_SENSOR_CM11_RX       "CM110x RX"
@@ -922,6 +941,7 @@
 #define D_SENSOR_BIOPDU_PZEM0XX_TX "BioPDU PZEM0XX Tx"
 #define D_SENSOR_BIOPDU_PZEM016_RX "BioPDU PZEM016 Rx"
 #define D_SENSOR_BIOPDU_BIT    "BioPDU Bit"
+#define D_SENSOR_LOX_O2_RX     "LoxO2 RX"
 
 // Units
 #define D_UNIT_AMPERE "А"
@@ -935,6 +955,7 @@
 #define D_UNIT_GALLONS "гал"
 #define D_UNIT_GALLONS_PER_MIN "гал/мин"
 #define D_UNIT_KILOGRAM "кг"
+#define D_UNIT_GRAM_PER_CUBIC_METER "g/m³"
 #define D_UNIT_INCH_MERCURY "inHg"
 #define D_UNIT_INCREMENTS "инч"
 #define D_UNIT_KELVIN "K"
@@ -1180,5 +1201,9 @@
 #define D_NEOPOOL_PH_HIGH                 "твърде високо"      // ph Alarms
 #define D_NEOPOOL_PH_LOW                  "твърде ниско"
 #define D_NEOPOOL_PUMP_TIME_EXCEEDED      "превишено време за помпане"
+
+// xsns_106_gdk101.ino
+#define D_AVG_RAD_DOSE                    "средна доза радиация"
+#define D_UNIT_US_H                       "µSv/h"
 
 #endif  // _LANGUAGE_BG_BG_H_

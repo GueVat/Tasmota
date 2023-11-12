@@ -51,12 +51,14 @@
 #define D_DECIMAL_SEPARATOR ","
 
 // Common
+#define D_ABSOLUTE_HUMIDITY "Abs Humidity"
 #define D_ADMIN "Admin"
 #define D_AIR_QUALITY "Lucht kwaliteit"
 #define D_AP "AP"                    // Access Point
 #define D_AS "als"
 #define D_AUTO "AUTO"
 #define D_BATT "Batt"                // Short for Battery
+#define D_BATTERY_CHARGE "Lading"    // Battery charge in %
 #define D_BLINK "Knipper"
 #define D_BLINKOFF "KnipperUit"
 #define D_BOOT_COUNT "Herstarts"
@@ -103,6 +105,7 @@
 #define D_FALLBACK_TOPIC "Fallback Topic"
 #define D_FALSE "Onwaar"
 #define D_FILE "Bestand"
+#define D_FILE_SYSTEM_SIZE "File System Size"
 #define D_FLOW_RATE "Debiet"
 #define D_FRAGMENTATION "frag."      // Lower case abbreviated version of fragmentation used in "memory fragmentation"
 #define D_FRAME_RATE "Frame rate"
@@ -133,6 +136,7 @@
 #define D_MULTI_PRESS "meervoudig"
 #define D_NOISE "Lawaai"
 #define D_NONE "Geen"
+#define D_NOX "NOx"
 #define D_O2 "Zuurstof"
 #define D_OFF "Uit"
 #define D_OFFLINE "Offline"
@@ -148,6 +152,7 @@
 #define D_POWER_FACTOR "Arbeidsfactor"
 #define D_POWERUSAGE "Vermogen"
 #define D_POWERUSAGE_ACTIVE "Werkelijk vermogen"
+#define D_POWERUSAGE_ACTIVE_TOTAL "Active Power Total"
 #define D_POWERUSAGE_APPARENT "Schijnbaar vermogen"
 #define D_POWERUSAGE_REACTIVE "Blindvermogen"
 #define D_PRESSURE "Luchtdruk"
@@ -184,6 +189,9 @@
 #define D_TRANSMIT "Verzend"
 #define D_TRUE "Waar"
 #define D_TVOC "TVOC"
+#define D_TWILIGHT_ASTRONOMICAL "Astronomical"
+#define D_TWILIGHT_CIVIL "Civil"
+#define D_TWILIGHT_NAUTICAL "Nautical"
 #define D_UPGRADE "opwaarderen"
 #define D_UPLOAD "Verzenden"
 #define D_UPTIME "Bedrijfstijd"
@@ -201,6 +209,7 @@
 #define D_UV_LEVEL "UV niveau"
 #define D_UV_POWER "UV intensiteit"
 #define D_VERSION "Versie"
+#define D_VOC "VOC"
 #define D_VOLTAGE "Spanning"
 #define D_VOLUME "Volume"
 #define D_WEIGHT "Gewicht"
@@ -298,6 +307,7 @@
 #define D_REFRESH_TO_SCAN_AGAIN "Vernieuw om opnieuw te zoeken"
 #define D_DUPLICATE_ACCESSPOINT "Dubbel AccessPoint"
 #define D_SKIPPING_LOW_QUALITY "Overslaan agv lage ontvangskwaliteit"
+#define D_MODE "Mode"
 #define D_RSSI "RSSI"
 #define D_WEP "WEP"
 #define D_WPA_PSK "WPA PSK"
@@ -647,6 +657,8 @@
 #define D_SENSOR_I2S_BCLK_IN   "I2S WS IN"
 #define D_SENSOR_I2S_DIN       "I2S DIN"
 #define D_SENSOR_I2S_DOUT      "I2S DOUT"
+#define D_SENSOR_I2S_DAC       "I2S DAC"
+#define D_SENSOR_HDMI_CEC      "HDMI CEC"
 #define D_SENSOR_WS2812        "WS2812"
 #define D_SENSOR_DFR562        "MP3 Speler"
 #define D_SENSOR_DFR562_BUSY   "MP3 Bezet"
@@ -663,6 +675,7 @@
 #define D_SENSOR_IRRECV        "IRrecv"
 #define D_SENSOR_MHZ_RX        "MHZ Rx"
 #define D_SENSOR_MHZ_TX        "MHZ Tx"
+#define D_SENSOR_HC8_RX        "HC8 Rx"
 #define D_SENSOR_PZEM004_RX    "PZEM004 Rx"
 #define D_SENSOR_PZEM016_RX    "PZEM016 Rx"
 #define D_SENSOR_PZEM017_RX    "PZEM017 Rx"
@@ -799,6 +812,8 @@
 #define D_SENSOR_OUTPUT_LO     "Output Lo"
 #define D_SENSOR_AS608_TX      "AS608 Tx"
 #define D_SENSOR_AS608_RX      "AS608 Rx"
+#define D_SENSOR_GM861_TX      "GM861 Tx"
+#define D_SENSOR_GM861_RX      "GM861 Rx"
 #define D_SENSOR_DDS2382_TX    "DDS238-2 Tx"
 #define D_SENSOR_DDS2382_RX    "DDS238-2 Rx"
 #define D_SENSOR_DDSU666_TX    "DDSU666 Tx"
@@ -895,6 +910,9 @@
 #define D_SENSOR_ZEROCROSS     "ZC Pulse"
 #define D_SENSOR_HALLEFFECT    "HallEffect"
 #define D_SENSOR_EPD_DATA      "EPD Data"
+#define D_SENSOR_PCF8574_INT   "PCF8574 Int"
+#define D_SENSOR_MCP23XXX_INT  "MCP23xxx Int"
+#define D_SENSOR_MCP23SXX_CS   "MCP23Sxx CS"
 #define D_SENSOR_MCP2515_CS    "MCP2515 CS"
 #define D_SENSOR_HRG15_RX      "HRG15 Rx"
 #define D_SENSOR_HRG15_TX      "HRG15 Tx"
@@ -911,6 +929,7 @@
 #define D_GPIO_DINGTIAN_SDI    "Dingtian SDI"
 #define D_GPIO_DINGTIAN_Q7     "Dingtian Q7"
 #define D_GPIO_DINGTIAN_PL     "Dingtian PL"
+#define D_GPIO_DINGTIAN_OE     "Dingtian OE"
 #define D_GPIO_DINGTIAN_RCK    "Dingtian RCK"
 #define D_SENSOR_CM11_TX       "CM110x TX"
 #define D_SENSOR_CM11_RX       "CM110x RX"
@@ -922,6 +941,7 @@
 #define D_SENSOR_BIOPDU_PZEM0XX_TX "BioPDU PZEM0XX Tx"
 #define D_SENSOR_BIOPDU_PZEM016_RX "BioPDU PZEM016 Rx"
 #define D_SENSOR_BIOPDU_BIT    "BioPDU Bit"
+#define D_SENSOR_LOX_O2_RX     "LoxO2 RX"
 
 // Units
 #define D_UNIT_AMPERE "A"
@@ -934,6 +954,7 @@
 #define D_UNIT_HOUR "h"
 #define D_UNIT_GALLONS "gal"
 #define D_UNIT_GALLONS_PER_MIN "g/m"
+#define D_UNIT_GRAM_PER_CUBIC_METER "g/m³"
 #define D_UNIT_INCH_MERCURY "inHg"
 #define D_UNIT_INCREMENTS "inc"
 #define D_UNIT_KELVIN "K"
@@ -1180,5 +1201,9 @@
 #define D_NEOPOOL_PH_HIGH                 "te hoog"          // ph Alarms
 #define D_NEOPOOL_PH_LOW                  "te laag"
 #define D_NEOPOOL_PUMP_TIME_EXCEEDED      "pomptijd bereikt"
+
+// xsns_106_gdk101.ino
+#define D_AVG_RAD_DOSE                    "gemiddelde stralingsdosis"
+#define D_UNIT_US_H                       "µSv/h"
 
 #endif  // _LANGUAGE_NL_NL_H_
