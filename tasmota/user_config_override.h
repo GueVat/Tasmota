@@ -93,48 +93,18 @@ Examples :
 
 #define MY_LANGUAGE            de_DE           // German in Germany
 
-/* GV: Heizöl Tank Sensor */
-/* platformio_override.ini: default_envs=tasmota32 */
-/*
-#define USE_DISPLAY
-#define USE_I2C
-#define USE_DISPLAY_SSD1306 
-*/
 
-/* GV: Stromzähler */
-/* platformio_override.ini: default_envs=tasmota32 */
-/*
-#ifndef USE_SCRIPT
-#define USE_SCRIPT
-#endif
-#ifndef USE_SML_M
-#define USE_SML_M
-#endif
-#ifdef USE_RULES
-#undef USE_RULES
-#endif
-*/
-
-/* GV: Fingerprint sensor */
-/* platformio_override.ini: default_envs=tasmota32 */
-/*
-#ifndef USE_SCRIPT
-#define USE_SCRIPT
-#endif
-#define USE_AS608              // Add support for AS608 optical and R503 capacitive fingerprint
-#define USE_AS608_MESSAGES     // Add verbose error messages 
-#ifdef USE_RULES
-#undef USE_RULES
-#endif
-*/
 
 /* Gosund SP1 smarte Steckdose */
 /* platformio_override.ini: default_envs=tasmota-sensors */
-/*
+
+#ifndef USE_ENERGY_SENSOR
+#define USE_ENERGY_SENSOR
+#endif
+
 #ifndef USE_BL09XX
 #define USE_BL09XX
 #endif
-*/
 
 
 
